@@ -28,10 +28,15 @@ int main()
     Image foregroundImage;
     foregroundImage = foregroundTex.copyToImage();
 
+    Color corner = foregroundImage.getPixel(0, 0);
+
     Vector2u sz = backgroundImage.getSize();
     for (int y = 0; y < sz.y; y++) {
         for (int x = 0; x < sz.x; x++) {
             Color example = foregroundImage.getPixel(x, y);
+            if (example == corner) {
+                foregroundImage.setPixel(x, y, backgroundImage.getPixel(x, y)); 
+            }
         }
     }
 
